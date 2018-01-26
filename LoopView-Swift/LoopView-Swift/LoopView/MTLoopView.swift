@@ -14,10 +14,20 @@ import UIKit
 fileprivate let cellIdentifier = "LoopCell"
 
 class MTLoopView: UIView {
-    
+    // MARK: Variable
     private let loopView = UICollectionView(frame: CGRect.zero, collectionViewLayout: MTLayout())
+    var isFirstShow: Bool = true
     var items: [String]?
-
+    fileprivate var loopItems: [String] {
+        get {
+            guard let items = items else {
+                return []
+            }
+            return items + items + items
+        }
+    }
+    
+    // MARK: Root View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLoopView()
@@ -27,6 +37,7 @@ class MTLoopView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: MTLoopView Action
     private func setupLoopView() {
         loopView.delegate = self
         loopView.dataSource = self
@@ -39,7 +50,7 @@ class MTLoopView: UIView {
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 extension MTLoopView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items?.count ?? 3
+        return loopItems.count > 0 ? loopItems.count : 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -51,12 +62,30 @@ extension MTLoopView: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
             return cell
         }
-        cell.imageView.image = UIImage(named: items[indexPath.item])
+        if indexPath.item == 0, isFirstShow {
+            isFirstShow = !isFirstShow
+            collectionView.scrollToItem(at: IndexPath(item: items.count, section: 0), at: .left, animated: false)
+        }
+        cell.imageView.image = UIImage(named: loopItems[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(items?[indexPath.item] ?? "\(indexPath.item)")")
+        print("\(indexPath.item)")
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let items = items else {
+            return
+        }
+        let offsetX = scrollView.contentOffset.x
+        let width = scrollView.bounds.width
+        let page = Int(offsetX / width)
+        if page == items.count - 2 {
+            loopView.scrollToItem(at: IndexPath(item: (items.count * 2 - 1), section: 0), at: .left, animated: false)
+        } else if page == items.count * 2 {
+            loopView.scrollToItem(at: IndexPath(item: (items.count), section: 0), at: .left, animated: false)
+        }
     }
 }
 
@@ -95,4 +124,10 @@ class MTLayout: UICollectionViewFlowLayout {
         collectionView.isPagingEnabled = true
         scrollDirection = .horizontal
     }
+}
+
+// MARK: - LoopItem
+struct LoopItem {
+    let image: UIImage?
+    let url: URL?
 }
