@@ -11,7 +11,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MTLoopViewDelegate {
     
     var loopView: MTLoopView?
     
@@ -19,10 +19,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         loopView = MTLoopView(frame: view.bounds)
+        loopView?.isStartTimer = true
+        loopView?.delegate = self
         loopView?.items = []
         for i in 1...7 {
-            loopView?.items?.append("image0\(i)")
+            loopView?.items?.append(LoopItem(image: UIImage(named: "image0\(i)"), url: nil))
         }
         view.addSubview(loopView!)
+    }
+    
+    func loopViewClickItem(item: LoopItem) {
+        print(item)
     }
 }

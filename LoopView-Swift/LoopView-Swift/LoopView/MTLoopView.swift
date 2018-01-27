@@ -12,13 +12,28 @@
 import UIKit
 
 fileprivate let cellIdentifier = "LoopCell"
+fileprivate let timeInterval: TimeInterval = 1.5
+
+protocol MTLoopViewDelegate {
+    func loopViewClickItem(item: LoopItem)
+}
 
 class MTLoopView: UIView {
     // MARK: Variable
+    var items: [LoopItem]?
+    var delegate: MTLoopViewDelegate?
+    var isStartTimer: Bool? {
+        didSet {
+            guard let isStartTimer = isStartTimer else {
+                return
+            }
+            isStartTimer ? self.startTimer() : self.removeTimer()
+        }
+    }
     private let loopView = UICollectionView(frame: CGRect.zero, collectionViewLayout: MTLayout())
-    var isFirstShow: Bool = true
-    var items: [String]?
-    fileprivate var loopItems: [String] {
+    private var timer: Timer?
+    fileprivate var isFirstShow: Bool = true
+    fileprivate var loopItems: [LoopItem] {
         get {
             guard let items = items else {
                 return []
@@ -45,6 +60,29 @@ class MTLoopView: UIView {
         loopView.register(MTLoopCell.self, forCellWithReuseIdentifier: cellIdentifier)
         addSubview(loopView)
     }
+    
+    @objc private func nextItem() {
+        guard let _ = items else {
+            return
+        }
+        let offsetX = loopView.contentOffset.x
+        let width = loopView.bounds.width
+        let page = Int(offsetX / width) + 1
+        loopView.scrollToItem(at: IndexPath(item: page, section: 0), at: .left, animated: true)
+    }
+    
+    private func startTimer() {
+        if let _ = timer {
+            return
+        }
+        timer = Timer(timeInterval: timeInterval, target: self, selector: #selector(nextItem), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer!, forMode: RunLoopMode.commonModes)
+    }
+    
+    private func removeTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
@@ -66,12 +104,16 @@ extension MTLoopView: UICollectionViewDataSource, UICollectionViewDelegate {
             isFirstShow = !isFirstShow
             collectionView.scrollToItem(at: IndexPath(item: items.count, section: 0), at: .left, animated: false)
         }
-        cell.imageView.image = UIImage(named: loopItems[indexPath.item])
+        cell.imageView.image = loopItems[indexPath.item].image
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(indexPath.item)")
+        guard let delegate = delegate else {
+            print(indexPath.item)
+            return
+        }
+        delegate.loopViewClickItem(item: loopItems[indexPath.row])
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -87,11 +129,18 @@ extension MTLoopView: UICollectionViewDataSource, UICollectionViewDelegate {
             loopView.scrollToItem(at: IndexPath(item: (items.count), section: 0), at: .left, animated: false)
         }
     }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isStartTimer = false
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        isStartTimer = true
+    }
 }
 
 // MARK: - MTLoopCell
-class MTLoopCell: UICollectionViewCell {
-    
+fileprivate class MTLoopCell: UICollectionViewCell {
     let imageView = UIImageView()
     
     override init(frame: CGRect) {
@@ -110,7 +159,7 @@ class MTLoopCell: UICollectionViewCell {
 }
 
 // MARK: - MTLayout
-class MTLayout: UICollectionViewFlowLayout {
+fileprivate class MTLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
         guard let collectionView = collectionView else {
