@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="QuoraDots" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="qMX-Ip-cLr">
+                                <rect key="frame" x="87" y="89" width="201" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="201" id="Ttq-jy-6ZI"/>
+                                    <constraint firstAttribute="height" constant="56" id="xO6-vQ-dTq"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="usU-eN-zbZ">
+                                <rect key="frame" x="111" y="181" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="5UV-cP-UUF"/>
+                                    <constraint firstAttribute="width" secondItem="usU-eN-zbZ" secondAttribute="height" multiplier="1:1" id="HVZ-yv-Hym"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="kfi-Fq-pu3">
+                                <rect key="frame" x="237" y="181" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kfi-Fq-pu3" secondAttribute="height" multiplier="1:1" id="1iv-2F-bXd"/>
+                                    <constraint firstAttribute="width" constant="27" id="BBM-Hk-tH2"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="lLh-UC-RIu">
+                                <rect key="frame" x="174" y="181" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="LcX-v5-CgT"/>
+                                    <constraint firstAttribute="width" secondItem="lLh-UC-RIu" secondAttribute="height" multiplier="1:1" id="Q8z-v5-gu2"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="usU-eN-zbZ" firstAttribute="top" secondItem="qMX-Ip-cLr" secondAttribute="bottom" constant="36" id="B82-vw-YR4"/>
+                            <constraint firstItem="lLh-UC-RIu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pce-f2-3ha"/>
+                            <constraint firstItem="qMX-Ip-cLr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vnv-E0-ie7"/>
+                            <constraint firstItem="kfi-Fq-pu3" firstAttribute="leading" secondItem="lLh-UC-RIu" secondAttribute="trailing" constant="36" id="XZs-l2-Hyp"/>
+                            <constraint firstItem="qMX-Ip-cLr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="69" id="bUw-Bt-dUD"/>
+                            <constraint firstItem="lLh-UC-RIu" firstAttribute="leading" secondItem="usU-eN-zbZ" secondAttribute="trailing" constant="36" id="dMl-cV-kw2"/>
+                            <constraint firstItem="lLh-UC-RIu" firstAttribute="top" secondItem="qMX-Ip-cLr" secondAttribute="bottom" constant="36" id="prr-ZF-ERu"/>
+                            <constraint firstItem="kfi-Fq-pu3" firstAttribute="top" secondItem="qMX-Ip-cLr" secondAttribute="bottom" constant="36" id="ygd-PG-shC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="dotOne" destination="usU-eN-zbZ" id="gOA-FV-tle"/>
+                        <outlet property="dotThree" destination="kfi-Fq-pu3" id="f0f-9u-u9o"/>
+                        <outlet property="dotTwo" destination="lLh-UC-RIu" id="fKD-1W-0Tk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="dot" width="54" height="54"/>
+        <image name="logo" width="402" height="112"/>
+    </resources>
+</document>

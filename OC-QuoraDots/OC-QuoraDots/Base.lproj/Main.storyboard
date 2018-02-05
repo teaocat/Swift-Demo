@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="zHC-AR-F04">
+                                <rect key="frame" x="87" y="89" width="201" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="201" id="Roh-8B-F6x"/>
+                                    <constraint firstAttribute="height" constant="56" id="gjz-Rh-TAn"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="Lpc-pH-LMp">
+                                <rect key="frame" x="111" y="181" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Lpc-pH-LMp" secondAttribute="height" multiplier="1:1" id="2mK-fq-pn7"/>
+                                    <constraint firstAttribute="width" constant="27" id="jPj-RU-dLr"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="Zqt-5o-cZW">
+                                <rect key="frame" x="174" y="181" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="tQ4-bl-NUC"/>
+                                    <constraint firstAttribute="width" secondItem="Zqt-5o-cZW" secondAttribute="height" multiplier="1:1" id="utk-l6-6b1"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="S2w-oj-1ae">
+                                <rect key="frame" x="237" y="181" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="5pv-Hv-QNZ"/>
+                                    <constraint firstAttribute="width" secondItem="S2w-oj-1ae" secondAttribute="height" multiplier="1:1" id="Wfh-cc-4AP"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zqt-5o-cZW" firstAttribute="leading" secondItem="Lpc-pH-LMp" secondAttribute="trailing" constant="36" id="CAf-B4-9fR"/>
+                            <constraint firstItem="S2w-oj-1ae" firstAttribute="leading" secondItem="Zqt-5o-cZW" secondAttribute="trailing" constant="36" id="JEU-oE-DZa"/>
+                            <constraint firstItem="Zqt-5o-cZW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kh6-Qw-n8y"/>
+                            <constraint firstItem="S2w-oj-1ae" firstAttribute="top" secondItem="zHC-AR-F04" secondAttribute="bottom" constant="36" id="Z5l-Is-mtt"/>
+                            <constraint firstItem="Lpc-pH-LMp" firstAttribute="top" secondItem="zHC-AR-F04" secondAttribute="bottom" constant="36" id="aMJ-qm-b97"/>
+                            <constraint firstItem="zHC-AR-F04" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="69" id="gSa-N7-DKk"/>
+                            <constraint firstItem="zHC-AR-F04" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ghY-Mi-tqh"/>
+                            <constraint firstItem="Zqt-5o-cZW" firstAttribute="top" secondItem="zHC-AR-F04" secondAttribute="bottom" constant="36" id="kSN-9C-q5j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="dotOne" destination="Lpc-pH-LMp" id="bbF-C6-ii6"/>
+                        <outlet property="dotThree" destination="S2w-oj-1ae" id="fgS-ea-33B"/>
+                        <outlet property="dotTwo" destination="Zqt-5o-cZW" id="Iej-ER-yNP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="dot" width="54" height="54"/>
+        <image name="logo" width="402" height="112"/>
+    </resources>
+</document>

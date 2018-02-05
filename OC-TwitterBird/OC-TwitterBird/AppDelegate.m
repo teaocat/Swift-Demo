@@ -11,44 +11,64 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <CAAnimationDelegate>
+
+/// 遮罩层
+@property (nonatomic, strong) CALayer *mask;
+/// 图片
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    // 设置图片
+    self.imageView = [[UIImageView alloc] initWithFrame:self.window.bounds];
+    self.imageView.image = [UIImage imageNamed:@"twitterScreen"];
+    [self.window addSubview:self.imageView];
+    
+    // 设置遮罩层
+    self.mask = [[CALayer alloc] init];
+    self.mask.contents = (__bridge id _Nullable)([UIImage imageNamed:@"twitterBird"].CGImage);
+    self.mask.position = self.imageView.center;
+    self.mask.bounds = CGRectMake(0, 0, 100, 80);
+    self.imageView.layer.mask = self.mask;
+    
+    [self animateMask];
+    
+    // 显示window
+    self.window.rootViewController = [[UIViewController alloc] init];
+    self.window.backgroundColor = [UIColor colorWithRed:70.0/255.0 green:154.0/255.0 blue:233.0/255.0 alpha:1];
+    [self.window makeKeyAndVisible];
+
+    // 隐藏状态栏
+    [UIApplication sharedApplication].statusBarHidden = YES;
     return YES;
 }
 
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+- (void)animateMask {
+    CAKeyframeAnimation *keyFrameAnimation = [[CAKeyframeAnimation alloc] init];
+    keyFrameAnimation.keyPath = @"bounds";
+    keyFrameAnimation.delegate = self;
+    keyFrameAnimation.duration = 1;
+    keyFrameAnimation.beginTime = CACurrentMediaTime() + 1;
+    
+    NSValue *initialBounds = [NSValue valueWithCGRect:self.mask.bounds];
+    NSValue *secondBounds = [NSValue valueWithCGRect:CGRectMake(0, 0, 80, 64)];
+    NSValue *finalBounds = [NSValue valueWithCGRect:CGRectMake(0, 0, 2000, 2000)];
+    keyFrameAnimation.values = @[initialBounds, secondBounds, finalBounds];
+    
+    keyFrameAnimation.keyTimes = @[@0, @0.3, @1];
+    
+    [self.mask addAnimation:keyFrameAnimation forKey:@"bounds"];
 }
 
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    self.imageView.layer.mask = nil;
 }
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-}
-
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
 
 @end
