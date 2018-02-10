@@ -4,5 +4,6 @@
         <page name='general'/>
         <page name='1.柯里化(Currying)'/>
         <page name='2.将protocol的方法声明为mutating'/>
+        <page name='4.元组(Tuple)'/>
     </pages>
 </playground>
