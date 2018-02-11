@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  demo
+//  Device-Battery
 //
-//  Created by Teaocat on 2018/2/7.
+//  Created by Teaocat on 2018/2/11.
 //  Copyright © 2018年 learning-swift. All rights reserved.
 //
 //  Github: https://github.com/teaocat
