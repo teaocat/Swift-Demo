@@ -23,7 +23,8 @@ class ViewController: UIViewController {
         // 注册通知, 检测电池状态
         NotificationCenter.default.addObserver(self, selector: #selector(batteryStateChange), name: NSNotification.Name.UIDeviceBatteryStateDidChange, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(batteryLevelChange), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: nil)
-        batteryLevelLabel.text = "\(Int(UIDevice.current.batteryLevel * 100))%"
+        batteryStateChange()
+        batteryLevelChange()
     }
     
     @objc func batteryStateChange() {
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
     }
     
     @objc func batteryLevelChange() {
-        batteryLevelLabel.text = "\(Int(UIDevice.current.batteryLevel))%"
+        batteryLevelLabel.text = "\(Int(UIDevice.current.batteryLevel * 100))%"
     }
 }
 
