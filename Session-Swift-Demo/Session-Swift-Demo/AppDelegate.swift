@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  即刻收藏效果
+//  Session-Swift-Demo
 //
-//  Created by Teaocat on 2018/2/13.
+//  Created by Teaocat on 2018/3/1.
 //  Copyright © 2018年 learning-swift. All rights reserved.
 //
 //  Github: https://github.com/teaocat

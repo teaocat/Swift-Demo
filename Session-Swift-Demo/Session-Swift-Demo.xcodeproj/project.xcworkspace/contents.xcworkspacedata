@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:&#x5373;&#x523b;&#x6536;&#x85cf;&#x6548;&#x679c;.xcodeproj">
+      location = "self:Session-Swift-Demo.xcodeproj">
    </FileRef>
 </Workspace>
