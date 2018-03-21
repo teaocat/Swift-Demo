@@ -12,6 +12,8 @@
 		4B867E322058BC49005B5608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B867E302058BC49005B5608 /* Main.storyboard */; };
 		4B867E342058BC49005B5608 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B867E332058BC49005B5608 /* Assets.xcassets */; };
 		4B867E372058BC49005B5608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B867E352058BC49005B5608 /* LaunchScreen.storyboard */; };
+		4B867E4120592A3A005B5608 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B867E4020592A3A005B5608 /* Concentration.swift */; };
+		4B867E4320592A4A005B5608 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B867E4220592A4A005B5608 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		4B867E332058BC49005B5608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B867E362058BC49005B5608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B867E382058BC49005B5608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B867E4020592A3A005B5608 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		4B867E4220592A4A005B5608 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 				4B867E302058BC49005B5608 /* Main.storyboard */,
 				4B867E3F2058BC9C005B5608 /* Supporting Files */,
 				4B867E382058BC49005B5608 /* Info.plist */,
+				4B867E4020592A3A005B5608 /* Concentration.swift */,
+				4B867E4220592A4A005B5608 /* Card.swift */,
 			);
 			path = FlipCard;
 			sourceTree = "<group>";
@@ -146,6 +152,8 @@
 			files = (
 				4B867E2F2058BC49005B5608 /* ViewController.swift in Sources */,
 				4B867E2D2058BC49005B5608 /* AppDelegate.swift in Sources */,
+				4B867E4120592A3A005B5608 /* Concentration.swift in Sources */,
+				4B867E4320592A4A005B5608 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
